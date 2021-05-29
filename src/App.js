@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
+//styling
+import * as s from "./App.style";
+
+//components
+import SideBar from "./components/sidebar/SideBar";
+
+import Header from "./components/pages/storage/Header";
+import MainView from "./components/pages/storage/MainView";
+import Footer from "./components/pages/storage/Footer";
+import Home from "./components/pages/storage/Home";
+import Upload from "./components/pages/storage/Upload";
 
 function App() {
+  const { path } = useRouteMatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <s.App>
+      <SideBar />
+      <MainView>
+        <Header />
+        <Switch>
+          <Route exact path={`${path}`} component={Home} />
+          <Route path={`${path}/upload`} component={Upload} />
+        </Switch>
+        <Footer />
+      </MainView>
+    </s.App>
   );
 }
 
