@@ -11,7 +11,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 function SideBar() {
   const { path } = useRouteMatch();
   //background image
-  const backgroundImage = "#";
+  const backgroundImage = "images/enc.jpg";
 
   //logo
   const LOGO = "SOS";

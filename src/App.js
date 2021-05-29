@@ -1,7 +1,10 @@
 import React from "react";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Switch, useRouteMatch, Route } from "react-router-dom";
 //styling
 import * as s from "./App.style";
+
+//private route
+// import PrivateRoute from "./components/authentication/PrivateRoute";
 
 //components
 import SideBar from "./components/sidebar/SideBar";

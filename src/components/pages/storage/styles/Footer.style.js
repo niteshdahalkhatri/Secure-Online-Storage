@@ -3,7 +3,12 @@ const media = {
   FooterContainerRes: "@media(max-width:650px)",
 };
 export const FooterContainer = styled.footer`
-  background-color: violet;
+  /* rgb(4, 210, 145) */
+
+  background-color: #36454f;
+  /* background-image: linear-gradient(147deg, #000000 0%, #434343 74%); */
+  /* linear-gradient(0deg,  0%,  74%); */
+
   height: 5rem;
   display: flex;
   align-items: center;
@@ -11,7 +16,9 @@ export const FooterContainer = styled.footer`
 `;
 
 export const FooterContent = styled.span`
+  color: whitesmoke;
   margin-left: -25rem;
+  font-size: 1.6rem;
 
   ${media.FooterContainerRes} {
     margin-left: -10rem;

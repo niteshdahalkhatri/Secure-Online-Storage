@@ -19,15 +19,16 @@ export const Search = styled.input`
   padding-left: 3.75rem;
   padding-right: 3rem;
   border: none;
-  border-bottom: 0.2rem solid black;
+  border-bottom: 1px solid #9966cc;
   outline: none;
   font-family: inherit;
   transition: 0.3s ease all;
-  background-color: white;
   margin-left: -2.75rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  background-color: #36454f;
+  color: whitesmoke;
   ${media.SearchRes[0]} {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   &:focus {
@@ -36,12 +37,13 @@ export const Search = styled.input`
 
   &::placeholder {
     text-align: center;
+    color: whitesmoke;
   }
 `;
 
 export const SearchIcon = styled.button`
   border: none;
-  background-color: white;
+  background-color: #36454f;
   z-index: 1;
   cursor: pointer;
   &:focus {

@@ -11,8 +11,8 @@ export const SidebarContainer = styled.div`
   max-width: 28rem;
   background-image: linear-gradient(
       315deg,
-      rgba(252, 82, 150, 0.8) 0%,
-      rgba(246, 112, 98, 0.8) 70%
+      rgba(0, 123, 167, 0.8) 0%,
+      rgba(54, 69, 79, 0.8) 70%
     ),
     url(${(props) => props.backgroundImage});
   background-size: cover;
@@ -65,7 +65,7 @@ export const MenuItem = styled.div`
   padding: 0.6rem 2rem;
   font-size: 1.6rem;
   font-weight: 500;
-  color: ${(props) => (props.selected ? "rgb(255,255,255)" : "rgb(19,15,64)")};
+  color: ${(props) => (props.selected ? "rgb(255,255,255)" : "#ace1af")};
   cursor: pointer;
 
   &:hover {
@@ -76,7 +76,7 @@ export const MenuItem = styled.div`
   &:after {
     content: "";
     border-top: 0.2rem solid
-      ${(props) => (props.selected ? "rgb(255,255,255)" : "rgb(225,112,85)")};
+      ${(props) => (props.selected ? "rgb(153,102,204)" : "rgb(93,138,168)")};
     display: block;
     margin: 1rem 0 0.6rem;
   }
@@ -99,7 +99,7 @@ export const Icons = styled.i`
   height: 1.6rem;
   width: 1.6rem;
   ${(props) => props.isSidebarOpen && `padding-right: 2rem;`}
-  color: ${(props) => (props.selected ? "rgb(255,255,255)" : "#b2ffff")};
+  color: ${(props) => (props.selected ? "#9966cc" : "#6e7f80")};
   transition: 0.2s ease-in all;
 `;
 

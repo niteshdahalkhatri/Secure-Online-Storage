@@ -27,8 +27,6 @@ function Slider() {
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
         autoplay={{ stopOnLastSlide: false, delay: 2000 }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
       >
         <SwiperSlide>
           <s.IconContainer>

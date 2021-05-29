@@ -8,8 +8,8 @@ export const Dropdown = styled.div`
   width: 20rem;
   border: none;
   padding: 1.5rem;
-  background-color: thistle;
-  border-radius: 10px;
+  border: 1px solid #9966cc;
+  background-color: rgba(54, 69, 79, 0.7);
   margin-left: 0.2rem;
   z-index: 10000;
 `;
@@ -29,9 +29,10 @@ export const DropdownItem = styled.span`
   font-size: 1.6rem;
   align-items: center;
   cursor: pointer;
+  color: whitesmoke;
   &:hover {
-    background-color: tomato;
-    border-radius: 5px;
+    background-color: rgba(153, 102, 204, 0.4);
+    width: 100%;
   }
 
   p {

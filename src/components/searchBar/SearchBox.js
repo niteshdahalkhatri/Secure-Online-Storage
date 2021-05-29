@@ -6,7 +6,7 @@ const SearchBox = () => {
   return (
     <s.SearchContainer>
       <s.SearchIcon>
-        <BsSearch size="2rem" />
+        <BsSearch size="2rem" color="#9966cc" />
       </s.SearchIcon>
       <s.Search type="text" placeholder="Search for files..." />
     </s.SearchContainer>

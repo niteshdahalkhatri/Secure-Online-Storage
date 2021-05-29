@@ -1,16 +1,22 @@
 import React from "react";
 import * as s from "./styles/Dropdown.style";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "../../../contexts/AuthContext";
+
 // import { useSpring, animated } from "react-spring";
 
 export default function Dropdown() {
-  //   const animation = useSpring({
-  //     config: {
-  //       duration: 250,
-  //     },
-  //     opacity: openDropdown ? 1 : 0,
-  //     transform: openDropdown ? `translateY(0%)` : `translateY(-100%)`,
-  //   });
+  const { logout } = useAuth();
+  const history = useHistory();
+
+  async function handleLogout() {
+    try {
+      await logout();
+      history.push("/login");
+    } catch {
+      history.push("/error");
+    }
+  }
 
   return (
     // <animated.div style={animation}>
@@ -28,7 +34,7 @@ export default function Dropdown() {
       </s.DropdownItem>
       <s.DropdownItem>
         <s.logoutIcon />
-        <p>
+        <p onClick={handleLogout}>
           <Link
             to="/logout"
             style={{ textDecoration: "none", color: "inherit" }}

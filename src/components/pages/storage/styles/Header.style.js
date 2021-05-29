@@ -7,7 +7,9 @@ const media = {
 
 export const HeaderContainer = styled.header`
   display: flex;
-  background-color: violet;
+  background-color: #36454f;
+  /* background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #434343 74%); */
   height: 5rem;
   align-items: center;
   justify-content: center;
@@ -29,13 +31,14 @@ export const UserContainer = styled.div`
 
 export const UserDisplay = styled.span`
   max-width: 20rem;
-  background-color: white;
+  background-color: #36454f;
+  border: none;
+  border-bottom: 1px solid #9966cc;
   height: 2.5rem;
   padding: 2rem 0 2rem 2rem;
   padding-right: 3.25rem;
   display: flex;
   align-items: center;
-  border-radius: 100px;
   ${media.userDisplayRes[0]} {
     max-width: 15rem;
   }
@@ -49,6 +52,7 @@ export const User = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: whitesmoke;
   ${media.userDisplayRes[0]} {
     font-size: 1.5rem;
   }
