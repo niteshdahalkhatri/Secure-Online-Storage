@@ -14,6 +14,7 @@ import MainView from "./components/pages/storage/MainView";
 import Footer from "./components/pages/storage/Footer";
 import Home from "./components/pages/storage/Home";
 import Upload from "./components/pages/storage/Upload";
+import UpdateProfile from "./components/authentication/UpdateProfile";
 
 function App() {
   const { path } = useRouteMatch();
@@ -24,7 +25,9 @@ function App() {
         <Header />
         <Switch>
           <Route exact path={`${path}`} component={Home} />
+          <Route exact path={`${path}/folder/:folderId`} component={Home} />
           <Route path={`${path}/upload`} component={Upload} />
+          <Route path={`${path}/update-profile`} component={UpdateProfile} />
         </Switch>
         <Footer />
       </MainView>

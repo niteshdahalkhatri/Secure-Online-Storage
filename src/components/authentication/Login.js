@@ -20,6 +20,9 @@ function Login() {
       history.push("/dashboard");
     } catch {
       setError("Failed to Sign in | Check your email & password");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
     }
 
     setLoading(false);

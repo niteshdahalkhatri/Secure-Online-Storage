@@ -1,9 +1,10 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Switch } from "react-router-dom";
 
 //Auth Provider
 import { AuthProvider } from "./contexts/AuthContext";
-// import PrivateRoute from "./components/authentication/PrivateRoute";
+import PrivateRoute from "./components/authentication/PrivateRoute";
+import PublicRoute from "./components/authentication/PublicRoute";
 
 //components
 import App from "./App";
@@ -12,24 +13,38 @@ import Register from "./components/authentication/Register";
 import ContactUs from "./components/pages/landing-page/ContactUs";
 import ForgotPassword from "./components/authentication/ForgotPassword";
 import Hero from "./components/pages/landing-page/Hero";
+import Loader from "./components/loader/Loader";
 
 const Routes = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+  }, []);
   return (
-    <AuthProvider>
-      <Switch>
-        <Route exact path="/" component={Hero} />
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/contact-us" component={ContactUs} />
-        <Route path="/forgot-password" component={ForgotPassword} />
-        {/* <PrivateRoute path="/dashboard" component={App} /> */}
-        <Route path="/dashboard" component={App} />
-      </Switch>
-    </AuthProvider>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <AuthProvider>
+          <Switch>
+            <PublicRoute exact path="/" component={Hero} />
+            <PublicRoute path="/login">
+              <Login />
+            </PublicRoute>
+            <PublicRoute path="/register">
+              <Register />
+            </PublicRoute>
+            <PublicRoute path="/contact-us" component={ContactUs} />
+            <PublicRoute path="/forgot-password" component={ForgotPassword} />
+            {/*private Route*/}
+            <PrivateRoute path="/dashboard" component={App} />
+            {/* <Route path="/dashboard" component={App} /> */}
+          </Switch>
+        </AuthProvider>
+      )}
+    </>
   );
 };
 

@@ -13,11 +13,23 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
+  const TimeOut = (err) => {
+    return (
+      setError(err),
+      setTimeout(() => {
+        setError("");
+      }, 2000)
+    );
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match");
+      return TimeOut("Passwords do not match");
+    }
+    if (passwordRef.current.value.length <= 6) {
+      return TimeOut("Passwords length is small");
     }
 
     try {
@@ -26,7 +38,7 @@ function Register() {
       await signup(emailRef.current.value, passwordRef.current.value);
       history.push("/dashboard");
     } catch {
-      setError("Failed to create an account");
+      TimeOut("Failed to create an account | Use strong password");
     }
 
     setLoading(false);
@@ -57,6 +69,7 @@ function Register() {
                 type="password"
                 name="password"
                 id="password"
+                placeholder="password should be more than 6 characters"
               />
 
               <s.ModalLabel htmlFor="ConfirmPassword">
@@ -64,6 +77,7 @@ function Register() {
               </s.ModalLabel>
               <s.ModalInput
                 ref={passwordConfirmRef}
+                required
                 type="password"
                 name="ConfirmPassword"
                 id="ConfirmPassword"

@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import * as s from "./styles/LoginModal.styles";
+import * as s from "./Modal.style";
 import { useSpring, animated } from "react-spring";
 
-function Login({ showModal, setShowModal }) {
+function Modal({ showModal, setShowModal }) {
   const modalRef = useRef();
 
   const animation = useSpring({
@@ -58,4 +58,4 @@ function Login({ showModal, setShowModal }) {
   );
 }
 
-export default Login;
+export default Modal;

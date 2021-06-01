@@ -9,6 +9,7 @@ export const MainViewContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr; */
   /* background-color: rgba(145, 163, 176, 0.1); */
+  background-color: rgba(230, 230, 250, 0.3);
 
   /* margin: 0 8rem 0 8rem; */
 `;

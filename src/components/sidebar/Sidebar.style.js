@@ -17,7 +17,7 @@ export const SidebarContainer = styled.div`
     url(${(props) => props.backgroundImage});
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center;
   color: whitesmoke;
   position: relative; //toggler
   transition: 0.2s ease all;

@@ -18,7 +18,12 @@ function Header() {
         <s.UserIconContainer onClick={() => setOpenDropdown(!openDropdown)}>
           <MdKeyboardArrowDown size="3rem" color="#9966cc" />
         </s.UserIconContainer>
-        {openDropdown && <Dropdown />}
+        {openDropdown && (
+          <Dropdown
+            setOpenDropdown={setOpenDropdown}
+            openDropdown={openDropdown}
+          />
+        )}
       </s.UserContainer>
     </s.HeaderContainer>
   );

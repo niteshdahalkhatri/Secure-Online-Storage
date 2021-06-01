@@ -30,6 +30,7 @@ export const DropdownItem = styled.span`
   align-items: center;
   cursor: pointer;
   color: whitesmoke;
+  text-decoration: none;
   &:hover {
     background-color: rgba(153, 102, 204, 0.4);
     width: 100%;

@@ -5,7 +5,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 
 // import { useSpring, animated } from "react-spring";
 
-export default function Dropdown() {
+export default function Dropdown({ setOpenDropdown, openDropdown }) {
   const { logout } = useAuth();
   const history = useHistory();
 
@@ -21,27 +21,17 @@ export default function Dropdown() {
   return (
     // <animated.div style={animation}>
     <s.Dropdown>
-      <s.DropdownItem>
+      <s.DropdownItem
+        as={Link}
+        to="/dashboard/update-profile"
+        onClick={() => setOpenDropdown(!openDropdown)}
+      >
         <s.profileIcon />
-        <p>
-          <Link
-            to="/profile-settings"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            Profile Settings
-          </Link>
-        </p>
+        <p>Profile Settings</p>
       </s.DropdownItem>
-      <s.DropdownItem>
+      <s.DropdownItem as={Link} to="/logout" onClick={handleLogout}>
         <s.logoutIcon />
-        <p onClick={handleLogout}>
-          <Link
-            to="/logout"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            Logout
-          </Link>
-        </p>
+        <p>Logout</p>
       </s.DropdownItem>
     </s.Dropdown>
     // </animated.div>
