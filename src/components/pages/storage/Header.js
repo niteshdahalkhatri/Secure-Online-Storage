@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as s from "./styles/Header.style";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import SearchBox from "../../searchBar/SearchBox";
-import Dropdown from "./Dropdown";
+import Dropdown from "../../Dropdown/Dropdown";
 import { useAuth } from "../../../contexts/AuthContext";
 
 function Header() {

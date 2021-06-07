@@ -34,9 +34,12 @@ export const DropdownItem = styled.span`
   &:hover {
     background-color: rgba(153, 102, 204, 0.4);
     width: 100%;
+    text-decoration: none;
+    color: whitesmoke;
   }
 
   p {
     padding-left: 1rem;
+    margin-bottom: 0;
   }
 `;

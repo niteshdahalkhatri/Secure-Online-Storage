@@ -5,8 +5,8 @@ import styled from "@emotion/styled";
 
 //FOlder css
 const FolderButton = styled.button`
-  /* border: 1px solid black; */
-  padding: 1rem;
+  border: 1px solid rgb(145, 163, 176);
+  padding: 1rem 2rem;
   border-radius: 5px;
   text-decoration: none;
   font-size: 1.8rem;
@@ -22,6 +22,11 @@ const FolderButton = styled.button`
     color: #6e7f80;
     font-weight: bold;
   }
+
+  &:hover {
+    color: #5d8aa8;
+    text-decoration: none;
+  }
 `;
 
 function Folder({ folder }) {
@@ -29,14 +34,14 @@ function Folder({ folder }) {
     <FolderButton
       as={Link}
       to={{
-        pathname: `/dashboard/folder/${folder.id}`,
+        pathname: `/dashboard/folders/${folder.id}`,
         state: { folder: folder },
       }}
     >
       <BsFolderFill
-        size="4rem"
-        style={{ marginRight: "0.6rem" }}
-        color="	#9966cc"
+        size="2rem"
+        style={{ marginRight: "1rem" }}
+        color="	rgb(95,99,104)"
       />
       {folder.name}
     </FolderButton>

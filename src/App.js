@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, useRouteMatch, Route } from "react-router-dom";
+import { useRouteMatch, Route } from "react-router-dom";
 //styling
 import * as s from "./App.style";
 
@@ -13,8 +13,9 @@ import Header from "./components/pages/storage/Header";
 import MainView from "./components/pages/storage/MainView";
 import Footer from "./components/pages/storage/Footer";
 import Home from "./components/pages/storage/Home";
-import Upload from "./components/pages/storage/Upload";
 import UpdateProfile from "./components/authentication/UpdateProfile";
+import Upload from "./components/pages/storage/Upload";
+import SharedWithMe from "./components/pages/storage/SharedWithMe";
 
 function App() {
   const { path } = useRouteMatch();
@@ -23,12 +24,11 @@ function App() {
       <SideBar />
       <MainView>
         <Header />
-        <Switch>
-          <Route exact path={`${path}`} component={Home} />
-          <Route exact path={`${path}/folder/:folderId`} component={Home} />
-          <Route path={`${path}/upload`} component={Upload} />
-          <Route path={`${path}/update-profile`} component={UpdateProfile} />
-        </Switch>
+        <Route exact path={`${path}`} component={Home} />
+        <Route exact path={`${path}/folders/:folderId`} component={Home} />
+        <Route path={`${path}/update-profile`} component={UpdateProfile} />
+        <Route path={`${path}/encrypt`} component={Upload} />
+        <Route path={`${path}/shared-with-me`} component={SharedWithMe} />
         <Footer />
       </MainView>
     </s.App>

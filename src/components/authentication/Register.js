@@ -3,6 +3,7 @@ import * as s from "./styles/Login.styles";
 import * as r from "./styles/Register.style";
 import { useAuth } from "../../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import { database } from "../../firebase";
 
 function Register() {
   const emailRef = useRef();
@@ -35,7 +36,14 @@ function Register() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      const cred = await signup(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      await database.users.add({
+        uid: cred.user.uid,
+        email: emailRef.current.value,
+      });
       history.push("/dashboard");
     } catch {
       TimeOut("Failed to create an account | Use strong password");

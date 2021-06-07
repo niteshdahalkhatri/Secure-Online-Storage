@@ -52,6 +52,7 @@ export const User = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 0;
   color: whitesmoke;
   ${media.userDisplayRes[0]} {
     font-size: 1.5rem;

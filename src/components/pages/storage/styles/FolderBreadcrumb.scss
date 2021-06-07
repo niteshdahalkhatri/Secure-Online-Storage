@@ -1,0 +1,26 @@
+.grow{
+    flex-grow: 1;
+    font-size: 1.8rem;
+    margin: 0 1rem;
+    align-self: center;
+    font-weight: 400;
+
+}
+
+.bgplm{
+    background-color: inherit;
+    padding-left: 0;
+    margin: 0;
+    
+}
+
+.ttdin{
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.size{
+    font-size: 1.5rem;
+}

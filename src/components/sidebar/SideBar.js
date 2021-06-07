@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as s from "./Sidebar.style";
 import { FaHome } from "react-icons/fa";
-import {
-  BsPeopleFill,
-  BsFillShieldLockFill,
-  BsFillTrash2Fill,
-} from "react-icons/bs";
+import { BsFillShieldLockFill, BsFillTrash2Fill } from "react-icons/bs";
 import { Link, useRouteMatch } from "react-router-dom";
 
 function SideBar() {
@@ -19,11 +15,6 @@ function SideBar() {
   //menus
   const MenuItems = [
     { name: "Home", to: "/dashboard", icon: <FaHome size="2rem" /> },
-    {
-      name: "Upload",
-      to: `${path}/upload`,
-      icon: <BsPeopleFill size="2rem" />,
-    },
     {
       name: "Shared With Me",
       to: `${path}/shared-with-me`,

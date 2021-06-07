@@ -14,6 +14,7 @@ export const Logo = styled(RiShieldUserLine)`
   font-size: 17rem;
   cursor: pointer;
   font-weight: 300;
+  color: #9966cc;
 `;
 
 export const LogoText = styled.p`

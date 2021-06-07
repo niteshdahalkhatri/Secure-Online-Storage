@@ -19,6 +19,7 @@ export const TextContainer = styled.div`
   p {
     font-size: 1.8rem;
     font-family: inherit;
+    margin-bottom: 0;
   }
 `;
 

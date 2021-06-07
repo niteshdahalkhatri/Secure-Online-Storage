@@ -1,7 +1,7 @@
 import React from "react";
 import * as s from "./styles/Dropdown.style";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 // import { useSpring, animated } from "react-spring";
 
