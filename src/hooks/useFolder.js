@@ -8,6 +8,7 @@ const ACTIONS = {
   SET_CHILD_FOLDERS: "set-child-folders",
   SET_CHILD_FILES: "set-child-files",
   SET_USERS: "set-users",
+  SET_SHARE_FILES: "set-share-files",
 };
 
 export const ROOT_FOLDER = { name: "Root", id: null, path: [] };
@@ -21,6 +22,7 @@ function reducer(state, { type, payload }) {
         childFiles: [],
         childFolders: [],
         users: [],
+        sharedFiles: [],
       };
     case ACTIONS.UPDATE_FOLDER:
       return {
@@ -42,6 +44,11 @@ function reducer(state, { type, payload }) {
         ...state,
         users: payload.users,
       };
+    case ACTIONS.SET_SHARE_FILES:
+      return {
+        ...state,
+        sharedFiles: payload.sharedFiles,
+      };
     default:
       return state;
   }
@@ -55,6 +62,7 @@ export function useFolder(folderId = null, folder = null) {
     childFolders: [],
     childFiles: [],
     users: [],
+    sharedFiles: [],
   });
   const { currentUser } = useAuth();
 
@@ -123,6 +131,19 @@ export function useFolder(folderId = null, folder = null) {
           dispatch({
             type: ACTIONS.SET_USERS,
             payload: { users: snapshot.docs.map(database.formatDoc) },
+          });
+        })
+    );
+  }, [currentUser]);
+  useEffect(() => {
+    return (
+      database.files
+        .where("sharedEmails", "array-contains", currentUser.email)
+        // .orderBy("createdAt")
+        .onSnapshot((snapshot) => {
+          dispatch({
+            type: ACTIONS.SET_SHARE_FILES,
+            payload: { sharedFiles: snapshot.docs.map(database.formatDoc) },
           });
         })
     );

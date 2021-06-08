@@ -175,6 +175,8 @@ function AddFileButton({ currentFolder }) {
                   type: type,
                   sharedBy: "",
                   sharedTo: [],
+                  sharedEmails: [],
+                  moveToBin: false,
                 });
                 setFileName("");
                 setFiles("");

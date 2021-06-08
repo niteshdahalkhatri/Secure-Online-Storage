@@ -161,6 +161,8 @@ export const EncryptButton = styled.button`
   margin-right: 1rem;
   color: ${(props) => (props.disabled ? "grey" : "#bcd4e6")};
   transition: 0.2s ease all;
+  ${(props) => props.disabled && "pointer-events:none;"}
+  ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor:pointer;")}
 
   &:hover {
     transform: translateY(-0.3rem);
@@ -178,6 +180,8 @@ export const UploadButton = styled.button`
   margin-left: 1rem;
   color: ${(props) => (props.disabled ? "grey" : "#bcd4e6")};
   transition: 0.2s ease all;
+  ${(props) => props.disabled && "pointer-events:none;"}
+  ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor:pointer;")}
 
   &:hover {
     transform: translateY(-0.3rem);

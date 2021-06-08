@@ -40,11 +40,14 @@ function SideBar() {
       {childFolders.length > 0 && childFiles.length > 0 && <s.HR />}
       {childFiles.length > 0 && (
         <s.FileContainer>
-          {childFiles.map((childFile) => (
-            <s.Files key={childFile.id}>
-              <File file={childFile} />
-            </s.Files>
-          ))}
+          {childFiles.map(
+            (childFile) =>
+              !childFile.moveToBin && (
+                <s.Files key={childFile.id}>
+                  <File file={childFile} />
+                </s.Files>
+              )
+          )}
         </s.FileContainer>
       )}
       <div id="main-portal"></div>

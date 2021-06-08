@@ -5,7 +5,7 @@ import { BiLogOutCircle } from "react-icons/bi";
 export const Dropdown = styled.div`
   position: absolute;
   top: 4.7rem;
-  width: 20rem;
+  max-width: 20rem;
   border: none;
   padding: 1.5rem;
   border: 1px solid #9966cc;

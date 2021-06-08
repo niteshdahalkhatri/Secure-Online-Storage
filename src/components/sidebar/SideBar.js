@@ -7,7 +7,6 @@ import { Link, useRouteMatch } from "react-router-dom";
 function SideBar() {
   const { path } = useRouteMatch();
   //background image
-  const backgroundImage = "images/enc.jpg";
 
   //logo
   const LOGO = "SOS";
@@ -21,13 +20,13 @@ function SideBar() {
       icon: <BsFillShieldLockFill size="2rem" />,
     },
     {
-      name: "Shared Files",
-      to: `${path}/shared-files`,
+      name: "Shared By Me",
+      to: `${path}/shared-by-me`,
       icon: <BsFillTrash2Fill size="2rem" />,
     },
     { name: "Encrypt", to: `${path}/encrypt`, icon: <FaHome size="2rem" /> },
     { name: "Decrypt", to: `${path}/decrypt`, icon: <FaHome size="2rem" /> },
-    { name: "Trash", to: `${path}/trash`, icon: <FaHome size="2rem" /> },
+    { name: "Trash", to: `${path}/bin`, icon: <FaHome size="2rem" /> },
   ];
 
   //selected state
@@ -55,10 +54,7 @@ function SideBar() {
   }, [sidebarOpen]);
 
   return (
-    <s.SidebarContainer
-      backgroundImage={backgroundImage}
-      isSidebarOpen={sidebarOpen}
-    >
+    <s.SidebarContainer isSidebarOpen={sidebarOpen}>
       <s.LogoContainer>{LOGO}</s.LogoContainer>
       <s.MenuItemContainer>
         {MenuItems.map((item, index) => {

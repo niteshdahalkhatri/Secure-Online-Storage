@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import * as s from "./DecryptionModal.style";
+import * as s from "./styles/DecryptionModal.style";
 import { useSpring, animated } from "react-spring";
 import {
   getKey,

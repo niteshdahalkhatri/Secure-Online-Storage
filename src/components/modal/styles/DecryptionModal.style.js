@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { MdClose } from "react-icons/md";
 
 export const Background = styled.div`
-  width: 50%;
+  width: 30%;
   height: 50%;
   /* background: rgba(0, 0, 0, 0.8); */
   position: fixed;
@@ -64,6 +64,8 @@ export const ModalButton = styled.a`
   text-decoration: none;
   margin-left: 1rem;
   font-weight: 400;
+  ${(props) => props.disabled && "pointer-events:none;"}
+  ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor:pointer;")}
 
   &:hover {
     transform: translateY(-0.3rem);
@@ -85,6 +87,8 @@ export const ModalDecButton = styled.button`
   height: 5rem;
   cursor: pointer;
   transition: 0.1s ease all;
+  ${(props) => props.disabled && "pointer-events:none;"}
+  ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor:pointer;")}
 
   &:hover {
     transform: translateY(-0.3rem);

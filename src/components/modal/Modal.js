@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import * as s from "./Modal.style";
+import * as s from "./styles/Modal.style";
 import { useSpring, animated } from "react-spring";
 
 function Modal({ showModal, setShowModal }) {

@@ -3,13 +3,17 @@ import { useSpring, animated } from "react-spring";
 import * as s from "./styles/FileDropDown.style";
 import { BsDownload } from "react-icons/bs";
 import { AiOutlineShareAlt, AiFillDelete } from "react-icons/ai";
+import { IoPersonRemoveSharp } from "react-icons/io5";
 import DecryptionModal from "../modal/DecryptionModal";
 import ShareModal from "../modal/ShareModal";
+import { useAuth } from "../../contexts/AuthContext";
+import { database } from "../../firebase";
 
 function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
   const modalRef = useRef();
   const [showModal, setShowModal] = useState(false);
   const [showShareModal, setShareModal] = useState(false);
+  const { currentUser } = useAuth();
 
   const animation = useSpring({
     config: {
@@ -31,6 +35,23 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
   }
 
   function handleShare() {
+    setOpenFileDropdown((prev) => !prev);
+    setShareModal((prev) => !prev);
+  }
+
+  //works needs to be done
+  function handleUnshare() {
+    setOpenFileDropdown((prev) => !prev);
+    setShareModal((prev) => !prev);
+  }
+
+  function handleDelete() {
+    database.files.doc(file.id).update({
+      moveToBin: true,
+    });
+    setOpenFileDropdown((prev) => !prev);
+  }
+  function handleRemove() {
     setOpenFileDropdown((prev) => !prev);
     setShareModal((prev) => !prev);
   }
@@ -57,17 +78,33 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
                 </s.FileModalContent>
               )}
               <s.HR />
-              <s.FileModalContent onClick={handleShare}>
-                <AiOutlineShareAlt style={{ marginRight: "0.3rem" }} />
-                <p>Share</p>
-              </s.FileModalContent>
-              <s.HR />
-              <s.FileModalContent
-                onClick={() => setOpenFileDropdown((prev) => !prev)}
-              >
-                <AiFillDelete style={{ marginRight: "0.3rem" }} />
-                <p>Delete</p>
-              </s.FileModalContent>
+
+              {file.sharedBy === currentUser.uid && (
+                <s.FileModalContent onClick={handleUnshare}>
+                  <IoPersonRemoveSharp style={{ marginRight: "0.3rem" }} />
+                  <p style={{ textDecoration: "line-through" }}>Share</p>
+                </s.FileModalContent>
+              )}
+              {file.sharedBy === currentUser.uid && <s.HR />}
+              {file.ownedBy === currentUser.uid && (
+                <s.FileModalContent onClick={handleShare}>
+                  <AiOutlineShareAlt style={{ marginRight: "0.3rem" }} />
+                  <p>Share</p>
+                </s.FileModalContent>
+              )}
+
+              {file.ownedBy === currentUser.uid && <s.HR />}
+              {file.ownedBy === currentUser.uid ? (
+                <s.FileModalContent onClick={handleDelete}>
+                  <AiFillDelete style={{ marginRight: "0.3rem" }} />
+                  <p>Delete</p>
+                </s.FileModalContent>
+              ) : (
+                <s.FileModalContent onClick={handleRemove}>
+                  <AiFillDelete style={{ marginRight: "0.3rem" }} />
+                  <p>Remove</p>
+                </s.FileModalContent>
+              )}
             </s.FileModalWrapper>
           </animated.div>
         </s.FileBackground>

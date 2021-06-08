@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import * as s from "./ShareModal.style";
+import * as s from "./styles/ShareModal.style";
 import { useSpring, animated } from "react-spring";
 import { useFolder } from "../../hooks/useFolder";
 import { database } from "../../firebase";
@@ -55,11 +55,14 @@ function ShareModal({ showShareModal, setShareModal, file }) {
       }, 2000);
       return;
     }
+    const userEmails = [];
+    userEmails.push(user.email);
 
     prevValue.push(user);
     database.files.doc(file.id).update({
       sharedTo: prevValue,
       sharedBy: currentUser.uid,
+      sharedEmails: userEmails,
     });
     setEmail("");
     setShareModal((prev) => !prev);
