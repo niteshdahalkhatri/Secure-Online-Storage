@@ -9,6 +9,8 @@ const ACTIONS = {
   SET_CHILD_FILES: "set-child-files",
   SET_USERS: "set-users",
   SET_SHARE_FILES: "set-share-files",
+  SET_SHAREBY_FILES: "set-shareby-files",
+  SET_DELETED_FILES: "set-deleted-files",
 };
 
 export const ROOT_FOLDER = { name: "Root", id: null, path: [] };
@@ -23,6 +25,8 @@ function reducer(state, { type, payload }) {
         childFolders: [],
         users: [],
         sharedFiles: [],
+        sharedByFiles: [],
+        deletedFiles: [],
       };
     case ACTIONS.UPDATE_FOLDER:
       return {
@@ -49,6 +53,16 @@ function reducer(state, { type, payload }) {
         ...state,
         sharedFiles: payload.sharedFiles,
       };
+    case ACTIONS.SET_SHAREBY_FILES:
+      return {
+        ...state,
+        sharedByFiles: payload.sharedByFiles,
+      };
+    case ACTIONS.SET_DELETED_FILES:
+      return {
+        ...state,
+        deletedFiles: payload.deletedFiles,
+      };
     default:
       return state;
   }
@@ -63,6 +77,8 @@ export function useFolder(folderId = null, folder = null) {
     childFiles: [],
     users: [],
     sharedFiles: [],
+    sharedByFiles: [],
+    deletedFiles: [],
   });
   const { currentUser } = useAuth();
 
@@ -144,6 +160,34 @@ export function useFolder(folderId = null, folder = null) {
           dispatch({
             type: ACTIONS.SET_SHARE_FILES,
             payload: { sharedFiles: snapshot.docs.map(database.formatDoc) },
+          });
+        })
+    );
+  }, [currentUser]);
+
+  useEffect(() => {
+    return (
+      database.files
+        .where("sharedBy", "==", currentUser.uid)
+        // .orderBy("createdAt")
+        .onSnapshot((snapshot) => {
+          dispatch({
+            type: ACTIONS.SET_SHAREBY_FILES,
+            payload: { sharedByFiles: snapshot.docs.map(database.formatDoc) },
+          });
+        })
+    );
+  }, [currentUser]);
+
+  useEffect(() => {
+    return (
+      database.files
+        .where("moveToBin", "==", true)
+        // .orderBy("createdAt")
+        .onSnapshot((snapshot) => {
+          dispatch({
+            type: ACTIONS.SET_DELETED_FILES,
+            payload: { deletedFiles: snapshot.docs.map(database.formatDoc) },
           });
         })
     );

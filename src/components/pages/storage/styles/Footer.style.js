@@ -18,10 +18,9 @@ export const FooterContainer = styled.footer`
 
 export const FooterContent = styled.span`
   color: whitesmoke;
-  margin-left: -25rem;
   font-size: 1.6rem;
 
   ${media.FooterContainerRes} {
-    margin-left: -10rem;
+    font-size: 1.4rem;
   }
 `;

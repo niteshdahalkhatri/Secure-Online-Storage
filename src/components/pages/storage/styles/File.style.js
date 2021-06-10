@@ -12,6 +12,7 @@ export const FileCardContainer = styled.section`
   border-radius: 5px;
   overflow: hidden;
   height: 15rem;
+  box-shadow: 0.7rem 0.7rem 1rem rgba(0, 0, 0, 0.2);
 
   /* box-shadow: 0 0 1.5rem -0.5rem; */
 `;

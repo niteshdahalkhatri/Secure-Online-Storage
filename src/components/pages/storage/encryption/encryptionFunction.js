@@ -86,3 +86,26 @@ export const encryptFileAndDownload = async (
   };
   reader.readAsArrayBuffer(file);
 };
+
+export const decryptFileAndDownload = async (
+  key,
+  file,
+  setdecUrl,
+  setDecrypt
+) => {
+  var eKey = await getKey(key);
+  var type = file.type;
+  var reader = new FileReader();
+
+  reader.onload = async () => {
+    var decrypted = await CryptoJS.AES.decrypt(reader.result, eKey); // Decryption: I: Base64 encoded string (OpenSSL-format) -> O: WordArray
+    var typedArray = await convertWordArrayToUint8Array(decrypted); // Convert: WordArray -> typed array
+    var fileDec = new Blob([typedArray], {
+      type,
+    }); // Create blob from string
+
+    setdecUrl(URL.createObjectURL(fileDec));
+    setDecrypt(true);
+  };
+  reader.readAsText(file);
+};

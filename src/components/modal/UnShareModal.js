@@ -5,38 +5,43 @@ import { useFolder } from "../../hooks/useFolder";
 import { database } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
 
-function ShareModal({ showShareModal, setShareModal, file }) {
-  const SharemodalRef = useRef();
+function UnShareModal({ showUnShareModal, setUnShareModal, file }) {
+  const UnSharemodalRef = useRef();
   const [email, setEmail] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const { users } = useFolder();
   const { currentUser } = useAuth();
 
-  const Shareanimation = useSpring({
+  const UnShareanimation = useSpring({
     config: {
       duration: 250,
     },
-    opacity: showShareModal ? 1 : 0,
-    transform: showShareModal ? `translateY(0%)` : `translateY(-100%)`,
+    opacity: showUnShareModal ? 1 : 0,
+    transform: showUnShareModal ? `translateY(0%)` : `translateY(-100%)`,
   });
 
   const closeDecModal = (e) => {
-    if (SharemodalRef.current === e.target) {
-      setShareModal(false);
+    if (UnSharemodalRef.current === e.target) {
+      setUnShareModal(false);
     }
   };
 
-  function handleShare(e) {
+  function handleRemove(e) {
     e.preventDefault();
     const prevValue = file.sharedTo;
     const sharedToEmails = file.sharedEmails;
     const user = users.find((user) => user.email === email);
-    const alreadyEmail = prevValue.find((share) => share.email === email);
+    const checkEmail = file.sharedEmails.includes(email);
+    const newValue = prevValue.filter((share) => share.email !== email);
+    const newEmails = sharedToEmails.filter(
+      (shareToEmail) => shareToEmail !== email
+    );
 
-    if (alreadyEmail !== undefined) {
-      setErrMsg("Already Shared to this user!");
+    if (!checkEmail) {
+      setErrMsg("Not shared to this user!");
       setTimeout(() => {
         setErrMsg("");
+        setEmail("");
       }, 2000);
       return;
     }
@@ -53,27 +58,34 @@ function ShareModal({ showShareModal, setShareModal, file }) {
       setErrMsg("Error Your mail detected!");
       setTimeout(() => {
         setErrMsg("");
+        setEmail("");
       }, 2000);
       return;
     }
 
-    sharedToEmails.push(user.email);
+    if (newValue.length === 0 && newEmails.length === 0) {
+      database.files.doc(file.id).update({
+        sharedTo: newValue,
+        sharedBy: "",
+        sharedEmails: newEmails,
+      });
+    } else {
+      database.files.doc(file.id).update({
+        sharedTo: newValue,
+        sharedBy: currentUser.uid,
+        sharedEmails: newEmails,
+      });
+    }
 
-    prevValue.push(user);
-    database.files.doc(file.id).update({
-      sharedTo: prevValue,
-      sharedBy: currentUser.uid,
-      sharedEmails: sharedToEmails,
-    });
     setEmail("");
-    setShareModal((prev) => !prev);
+    setUnShareModal((prev) => !prev);
   }
   return (
     <>
-      {showShareModal ? (
-        <s.Background onClick={closeDecModal} ref={SharemodalRef}>
-          <animated.div style={Shareanimation}>
-            <s.ModalWrapper showModal={showShareModal}>
+      {showUnShareModal ? (
+        <s.Background onClick={closeDecModal} ref={UnSharemodalRef}>
+          <animated.div style={UnShareanimation}>
+            <s.ModalWrapper showModal={showUnShareModal}>
               <form
                 style={{
                   display: "flex",
@@ -81,27 +93,27 @@ function ShareModal({ showShareModal, setShareModal, file }) {
                   width: "90%",
                   alignItems: "center",
                 }}
-                onSubmit={handleShare}
+                onSubmit={handleRemove}
               >
                 <s.ModalInput
                   type="email"
                   autoFocus
-                  placeholder="Email to share files"
+                  placeholder="Email to remove from shared files"
                   required
                   error={errMsg}
                   value={errMsg ? errMsg : email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <s.ButtonContainer>
-                  <s.ModalShareButton onClick={handleShare} type="submit">
-                    Share
+                  <s.ModalShareButton onClick={handleRemove} type="submit">
+                    Remove
                   </s.ModalShareButton>
                 </s.ButtonContainer>
               </form>
 
               <s.CloseModalButton
                 aria-label="Close modal"
-                onClick={() => setShareModal((prev) => !prev)}
+                onClick={() => setUnShareModal((prev) => !prev)}
               />
             </s.ModalWrapper>
           </animated.div>
@@ -111,4 +123,4 @@ function ShareModal({ showShareModal, setShareModal, file }) {
   );
 }
 
-export default ShareModal;
+export default UnShareModal;

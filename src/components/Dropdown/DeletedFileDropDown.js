@@ -4,7 +4,7 @@ import * as s from "./styles/DeletedFile.style";
 import { AiFillDelete } from "react-icons/ai";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { useAuth } from "../../contexts/AuthContext";
-import { database } from "../../firebase";
+import { database, storage } from "../../firebase";
 
 function DeletedFileDropDown({
   openDeleteFile,
@@ -32,10 +32,20 @@ function DeletedFileDropDown({
     database.files.doc(file.id).update({
       moveToBin: false,
     });
+
     setOpenDeleteFileDropdown((prev) => !prev);
   }
 
   function handleDelete() {
+    const DeleteTask = storage
+      .ref(`files/${currentUser.uid}${file.path}`)
+      .delete();
+    DeleteTask.then((c) => {
+      console.log(c);
+    }).catch((e) => {
+      console.log(e);
+    });
+    database.files.doc(file.id).delete();
     setOpenDeleteFileDropdown((prev) => !prev);
   }
   return (

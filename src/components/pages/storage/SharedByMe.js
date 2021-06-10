@@ -3,6 +3,7 @@ import File from "./File";
 import { useFolder } from "../../../hooks/useFolder";
 import * as s from "./styles/Home.style";
 import styled from "@emotion/styled";
+import { database } from "../../../firebase";
 
 const ShareByMeContainer = styled.section`
   overflow-y: scroll;
@@ -10,13 +11,36 @@ const ShareByMeContainer = styled.section`
 `;
 
 function SharedByMe() {
-  const { childFiles } = useFolder();
+  const { sharedByFiles } = useFolder();
+  const fileId = sharedByFiles.map((sharedByFile) => sharedByFile.id);
+  function handleMassRemove() {
+    fileId.forEach((id) => {
+      database.files.doc(id).update({
+        sharedTo: [],
+        sharedBy: "",
+        sharedEmails: [],
+      });
+    });
+  }
   return (
     <ShareByMeContainer>
+      <s.BinContainer>
+        <s.BinTextContainer>
+          <s.ShareIcon />
+          <p>Shared By Me</p>
+        </s.BinTextContainer>
+        <s.DeleteALLButton
+          type="button"
+          length={sharedByFiles.length}
+          onClick={handleMassRemove}
+        >
+          Remove All
+        </s.DeleteALLButton>
+      </s.BinContainer>
+      <s.HR />
       <s.FileContainer>
-        {childFiles.map(
+        {sharedByFiles.map(
           (childFile) =>
-            childFile.sharedBy &&
             !childFile.moveToBin && (
               <s.Files key={childFile.id}>
                 <File file={childFile} />

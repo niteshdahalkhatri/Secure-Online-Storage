@@ -14,10 +14,10 @@ export const SidebarContainer = styled.div`
       rgba(0, 123, 167, 0.8) 0%,
       rgba(54, 69, 79, 0.8) 70%
     ),
-    url("images/enc.jpg");
+    url("/images/enc.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
   color: whitesmoke;
   position: relative; //toggler
   transition: 0.2s ease all;

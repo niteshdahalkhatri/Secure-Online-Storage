@@ -6,6 +6,7 @@ import { AiOutlineShareAlt, AiFillDelete } from "react-icons/ai";
 import { IoPersonRemoveSharp } from "react-icons/io5";
 import DecryptionModal from "../modal/DecryptionModal";
 import ShareModal from "../modal/ShareModal";
+import UnShareModal from "../modal/UnShareModal";
 import { useAuth } from "../../contexts/AuthContext";
 import { database } from "../../firebase";
 
@@ -13,6 +14,7 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
   const modalRef = useRef();
   const [showModal, setShowModal] = useState(false);
   const [showShareModal, setShareModal] = useState(false);
+  const [showUnShareModal, setUnShareModal] = useState(false);
   const { currentUser } = useAuth();
 
   const animation = useSpring({
@@ -39,10 +41,10 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
     setShareModal((prev) => !prev);
   }
 
-  //works needs to be done
+  //works needs to be done shared by me
   function handleUnshare() {
     setOpenFileDropdown((prev) => !prev);
-    setShareModal((prev) => !prev);
+    setUnShareModal((prev) => !prev);
   }
 
   function handleDelete() {
@@ -51,6 +53,8 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
     });
     setOpenFileDropdown((prev) => !prev);
   }
+
+  //share with me Remove
   function handleRemove() {
     setOpenFileDropdown((prev) => !prev);
     setShareModal((prev) => !prev);
@@ -118,6 +122,11 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
       <ShareModal
         showShareModal={showShareModal}
         setShareModal={setShareModal}
+        file={file}
+      />
+      <UnShareModal
+        showUnShareModal={showUnShareModal}
+        setUnShareModal={setUnShareModal}
         file={file}
       />
     </>

@@ -3,6 +3,9 @@ import File from "./File";
 import { useFolder } from "../../../hooks/useFolder";
 import * as s from "./styles/Home.style";
 import styled from "@emotion/styled";
+
+import { database, storage } from "../../../firebase";
+import { useAuth } from "../../../contexts/AuthContext";
 // import DeletedFile from "../../Dropdown/DeletedFileDropDown";
 
 const ShareByMeContainer = styled.section`
@@ -11,18 +14,48 @@ const ShareByMeContainer = styled.section`
 `;
 
 function Bin() {
-  const { childFiles } = useFolder();
+  const { currentUser } = useAuth();
+  const { deletedFiles } = useFolder();
+
+  function handleDelete() {
+    const storedFilePath = deletedFiles.map((deletedFile) => {
+      return deletedFile.path;
+    });
+
+    storedFilePath.forEach((path) => {
+      storage.ref(`files/${currentUser.uid}${path}`).delete();
+    });
+
+    const toBedeleteFile = deletedFiles.map((deletedFile) => {
+      return deletedFile.id;
+    });
+    toBedeleteFile.forEach((id) => {
+      database.files.doc(id).delete();
+    });
+  }
   return (
     <ShareByMeContainer>
+      <s.BinContainer>
+        <s.BinTextContainer>
+          <s.TrashIcon />
+          <p>Bin</p>
+        </s.BinTextContainer>
+        <s.DeleteALLButton
+          type="button"
+          length={deletedFiles.length}
+          onClick={handleDelete}
+        >
+          Delete All
+        </s.DeleteALLButton>
+      </s.BinContainer>
+
+      <s.HR />
       <s.FileContainer>
-        {childFiles.map(
-          (childFile) =>
-            childFile.moveToBin && (
-              <s.Files key={childFile.id}>
-                <File file={childFile} />
-              </s.Files>
-            )
-        )}
+        {deletedFiles.map((deletdFile) => (
+          <s.Files key={deletdFile.id}>
+            <File file={deletdFile} />
+          </s.Files>
+        ))}
       </s.FileContainer>
     </ShareByMeContainer>
   );

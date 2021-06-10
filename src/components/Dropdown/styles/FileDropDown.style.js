@@ -8,7 +8,7 @@ export const FileBackground = styled.div`
   z-index: 1000;
 `;
 export const FileModalWrapper = styled.div`
-  width: 10rem;
+  width: 12rem;
   height: 13rem;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: rgba(119, 136, 153);

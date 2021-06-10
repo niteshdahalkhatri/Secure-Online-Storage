@@ -56,10 +56,12 @@ export const ModalInput = styled.input`
   font-size: 1.6rem;
   border-radius: 10px;
   color: whitesmoke;
+  letter-spacing: inherit;
 
   &::placeholder {
     color: whitesmoke;
     font-size: 1.4rem;
+    letter-spacing: inherit;
   }
 
   &:focus {
@@ -77,7 +79,7 @@ export const ModalButton = styled.button`
   height: 5rem;
   cursor: pointer;
   transition: 0.1s ease all;
-  border-radius: 10px;
+  letter-spacing: inherit;
 
   &:hover {
     transform: translateY(-0.3rem);

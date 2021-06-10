@@ -17,7 +17,7 @@ function AddFolderButton({ currentFolder }) {
 
   const animation = useSpring({
     config: {
-      duration: 250,
+      duration: 200,
     },
     opacity: showModal ? 1 : 0,
     transform: showModal ? `translateY(0%)` : `translateY(-100%)`,

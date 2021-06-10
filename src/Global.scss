@@ -5,13 +5,30 @@
 }
 
 html{
+    
     font-size: 62.5%;
+    @media(max-width: 1410px){
+font-size: 53%;
+    }
+    @media(max-width: 1160px){
+        font-size: 49%;
+            }
+
+            @media(max-width: 1050px){
+                font-size: 46%;
+                    }
+            
 }
 
 body{
 font-family: 'Montserrat', sans-serif;
 font-weight: 300;
 overflow: hidden;
+letter-spacing: 0.2rem;
+
+@media(max-width: 1050px){
+    letter-spacing: 0.1rem;
+        }
 
 }
 

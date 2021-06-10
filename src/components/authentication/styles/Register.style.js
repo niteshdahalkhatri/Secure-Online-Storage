@@ -33,7 +33,9 @@ export const RegisterModalButton = styled.button`
   height: 5rem;
   cursor: pointer;
   transition: 0.1s ease all;
-  border-radius: 10px;
+  border-radius: 5px;
+  letter-spacing: inherit;
+
   &:hover {
     transform: translateY(-0.3rem);
     box-shadow: 0rem 0.2rem 1rem rgba(0, 0, 0, 0.3);

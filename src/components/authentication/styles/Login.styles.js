@@ -73,10 +73,13 @@ export const ModalInput = styled.input`
   font-size: 1.8rem;
   border-radius: 10px;
   color: whitesmoke;
+  letter-spacing: inherit;
 
   &::placeholder {
     color: whitesmoke;
-    font-size: 1.4rem;
+    font-size: 1rem;
+    letter-spacing: inherit;
+    color: grey;
   }
 
   &:focus {
@@ -102,7 +105,8 @@ export const ModalButton = styled.button`
   height: 5rem;
   cursor: pointer;
   transition: 0.1s ease all;
-  border-radius: 10px;
+  border-radius: 5px;
+  letter-spacing: inherit;
 
   &:hover {
     transform: translateY(-0.3rem);
@@ -120,7 +124,7 @@ export const BottomWrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   width: 45rem;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   margin-top: 2rem;
   border: 1px solid #495059;
   border-radius: 10px;

@@ -1,5 +1,11 @@
 import styled from "@emotion/styled";
-import { SiLetsencrypt } from "react-icons/si";
+// import { SiLetsencrypt } from "react-icons/si";
+import { MdNoEncryption } from "react-icons/md";
+import { BsFillShieldLockFill } from "react-icons/bs";
+
+export const media = {
+  mediaMaxWidth475px: "@media(max-width:475px)",
+};
 
 export const UploadSection = styled.section`
   height: 85%;
@@ -7,11 +13,31 @@ export const UploadSection = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-right: 15rem;
+  ${media.mediaMaxWidth475px} {
+    margin-right: 0rem;
+  }
+`;
+export const UploadDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-bottom: 2px solid black;
+  padding-bottom: 5rem;
+  padding-top: 10rem;
+  width: 50%;
+  box-shadow: 2rem 2rem 2rem 0.3rem rgba(0, 0, 0, 0.2);
+`;
+export const UploadIcon = styled(BsFillShieldLockFill)`
+  font-size: 18rem;
+  margin-top: -5rem;
+  margin-bottom: 2rem;
 `;
 
-export const UploadIcon = styled(SiLetsencrypt)`
+export const DecryptIcon = styled(MdNoEncryption)`
   font-size: 18rem;
-  margin-top: -10rem;
+  margin-top: -5rem;
   margin-bottom: 2rem;
 `;
 
@@ -81,14 +107,12 @@ export const EncryptKey = styled.input`
   font-size: 1.6rem;
   width: 30rem;
   transition: 0.2s ease-in all;
+  letter-spacing: inherit;
   color: ${(props) => (props.error ? "red" : "black")};
   &::placeholder {
     color: ${(props) => (props.error ? "red" : "black")};
     font-size: 1.4rem;
-  }
-
-  &::placeholder {
-    font-size: 1.6rem;
+    letter-spacing: inherit;
   }
 `;
 
@@ -114,6 +138,7 @@ export const EncryptButton = styled.button`
   transition: 0.2s ease all;
   ${(props) => props.disabled && "pointer-events:none;"}
   ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor:pointer;")}
+  letter-spacing: inherit;
 
   &:hover {
     transform: translateY(-0.3rem);
@@ -135,7 +160,8 @@ export const DownloadButton = styled.a`
   transition: 0.2s ease all;
   ${(props) => props.disabled && "pointer-events:none;"}
   ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor:pointer;")}
-   
+  letter-spacing: inherit;
+
   &:hover {
     transform: translateY(-0.3rem);
     box-shadow: 0rem 0.2rem 1rem rgba(0, 0, 0, 0.3);

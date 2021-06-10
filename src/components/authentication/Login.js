@@ -10,9 +10,9 @@ function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  async function handleSubmit(e) {
-    e.preventDefault();
 
+  async function HandleSubmit(e) {
+    e.preventDefault();
     try {
       setError("");
       setLoading(true);
@@ -24,7 +24,6 @@ function Login() {
         setError("");
       }, 2000);
     }
-
     setLoading(false);
   }
   return (
@@ -36,7 +35,7 @@ function Login() {
         <s.ModalWrapper>
           {error && <s.ErrorDisplay>{error}</s.ErrorDisplay>}
           <s.ModalContent>
-            <s.ModalForm onSubmit={handleSubmit}>
+            <s.ModalForm onSubmit={HandleSubmit}>
               <s.ModalLabel htmlFor="email">Email Address</s.ModalLabel>
               <s.ModalInput
                 ref={emailRef}

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const media = {
+export const media = {
   userContainerRes: "@media(max-width:1260px)",
   userDisplayRes: ["@media(max-width:848px)", "@media(max-width:570px)"],
 };
@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   background-color: #36454f;
   /* background-color: #000000;
-  background-image: linear-gradient(147deg, #000000 0%, #434343 74%); */
+  background-image: linear-gradient(147deg, #000000 0%, #434343 74%);s*/
   height: 5rem;
   align-items: center;
   justify-content: center;
@@ -49,10 +49,10 @@ export const UserDisplay = styled.span`
 
 export const User = styled.p`
   font-size: 1.8rem;
+  margin-bottom: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 0;
   color: whitesmoke;
   ${media.userDisplayRes[0]} {
     font-size: 1.5rem;
