@@ -13,6 +13,7 @@ export const HeaderContainer = styled.header`
   height: 5rem;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 `;
 
 export const UserContainer = styled.div`

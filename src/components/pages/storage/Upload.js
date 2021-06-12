@@ -9,12 +9,14 @@ function Upload() {
   const [encUrl, setEncUrl] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [files, setFiles] = useState("");
+
   function handleChoose(e) {
     const file = e.target.files[0];
     if (file == null) return;
     setFileName(file.name);
     setFiles(file);
   }
+
   async function handleEncrypt() {
     if (files === "") return;
     if (key === "" || key.length < 8) {
@@ -55,7 +57,7 @@ function Upload() {
 
           <s.EncryptLabel htmlFor="encrypt">Encrypt</s.EncryptLabel>
           <s.EncryptKey
-            type="text"
+            type="password"
             autoFocus
             placeholder="your key here"
             id="encrypt"

@@ -19,7 +19,7 @@ function Register() {
       setError(err),
       setTimeout(() => {
         setError("");
-      }, 2000)
+      }, 1500)
     );
   };
 
@@ -43,8 +43,10 @@ function Register() {
       await database.users.add({
         uid: cred.user.uid,
         email: emailRef.current.value,
+        verified: false,
       });
-      history.push("/dashboard");
+      window.localStorage.setItem("emailForSignIn", emailRef.current.value);
+      history.push("/email-sign-in");
     } catch {
       TimeOut("Failed to create an account | Use strong password");
     }

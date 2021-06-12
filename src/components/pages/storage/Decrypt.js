@@ -37,45 +37,47 @@ function Decrypt() {
   return (
     <>
       <s.UploadSection>
-        <s.DecryptIcon />
+        <s.UploadDiv>
+          <s.DecryptIcon />
 
-        <s.UploadFileContaier>
-          <s.FileNameDisplay type="text" defaultValue={fileName} readOnly />
-          <s.UploadFile>
-            Choose File
-            <input
-              type="file"
-              style={{ opacity: 0, position: "absolute", left: "-9999px" }}
-              onChange={handleChoose}
-            />
-          </s.UploadFile>
-        </s.UploadFileContaier>
+          <s.UploadFileContaier>
+            <s.FileNameDisplay type="text" defaultValue={fileName} readOnly />
+            <s.UploadFile>
+              Choose File
+              <input
+                type="file"
+                style={{ opacity: 0, position: "absolute", left: "-9999px" }}
+                onChange={handleChoose}
+              />
+            </s.UploadFile>
+          </s.UploadFileContaier>
 
-        <s.EncryptLabel htmlFor="encrypt">Decrypt</s.EncryptLabel>
-        <s.EncryptKey
-          type="text"
-          autoFocus
-          placeholder="your key here"
-          id="encrypt"
-          required
-          error={errMsg}
-          value={errMsg ? errMsg : key}
-          onChange={(e) => setKey(e.target.value)}
-        />
+          <s.EncryptLabel htmlFor="encrypt">Decrypt</s.EncryptLabel>
+          <s.EncryptKey
+            type="password"
+            autoFocus
+            placeholder="your key here"
+            id="encrypt"
+            required
+            error={errMsg}
+            value={errMsg ? errMsg : key}
+            onChange={(e) => setKey(e.target.value)}
+          />
 
-        <s.ButtonContainer>
-          <s.EncryptButton disabled={decrypt} onClick={handleDecrypt}>
-            Decrypt
-          </s.EncryptButton>
-          <s.DownloadButton
-            disabled={!decrypt}
-            href={decUrl}
-            download={fileName}
-            onClick={decryptionFinish}
-          >
-            Download
-          </s.DownloadButton>
-        </s.ButtonContainer>
+          <s.ButtonContainer>
+            <s.EncryptButton disabled={decrypt} onClick={handleDecrypt}>
+              Decrypt
+            </s.EncryptButton>
+            <s.DownloadButton
+              disabled={!decrypt}
+              href={decUrl}
+              download={fileName}
+              onClick={decryptionFinish}
+            >
+              Download
+            </s.DownloadButton>
+          </s.ButtonContainer>
+        </s.UploadDiv>
       </s.UploadSection>
     </>
   );

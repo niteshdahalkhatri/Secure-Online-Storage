@@ -5,6 +5,7 @@ import { BsFillShieldLockFill } from "react-icons/bs";
 
 export const media = {
   mediaMaxWidth475px: "@media(max-width:475px)",
+  mediaMaxWidth800px: "@media(max-width:800px)",
 };
 
 export const UploadSection = styled.section`
@@ -13,7 +14,7 @@ export const UploadSection = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-right: 15rem;
+  margin-right: 12rem;
   ${media.mediaMaxWidth475px} {
     margin-right: 0rem;
   }
@@ -23,22 +24,32 @@ export const UploadDiv = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 5rem;
   padding-top: 10rem;
   width: 50%;
   box-shadow: 2rem 2rem 2rem 0.3rem rgba(0, 0, 0, 0.2);
+  ${media.mediaMaxWidth800px} {
+    width: 80%;
+  }
+  ${media.mediaMaxWidth475px} {
+    width: 100%;
+  }
 `;
 export const UploadIcon = styled(BsFillShieldLockFill)`
   font-size: 18rem;
   margin-top: -5rem;
   margin-bottom: 2rem;
+  color: #6a93af;
+  z-index: 0;
 `;
 
 export const DecryptIcon = styled(MdNoEncryption)`
   font-size: 18rem;
   margin-top: -5rem;
   margin-bottom: 2rem;
+  color: #6a93af;
 `;
 
 export const UploadFileContaier = styled.div`
@@ -127,7 +138,7 @@ const sameButtonCss = {
   border: "none",
   background: "inherit",
   fontStyle: "inherit",
-  fontWeight: "inherit",
+  fontWeight: "300",
 };
 
 export const EncryptButton = styled.button`

@@ -12,16 +12,16 @@ export const Background = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-  width: 40rem;
+  width: 35rem;
   height: 20rem;
-  background: rgba(54, 69, 79, 0.95);
+  background: rgba(54, 69, 79);
   color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 10;
   border-radius: 10px;
+  margin-left: -10rem;
 `;
 
 export const ModalInput = styled.input`

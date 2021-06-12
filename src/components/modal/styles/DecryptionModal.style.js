@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { MdClose } from "react-icons/md";
 
-export const Background = styled.div`
+export const DecBackground = styled.div`
   width: 30%;
   height: 50%;
   /* background: rgba(0, 0, 0, 0.8); */
@@ -11,7 +11,7 @@ export const Background = styled.div`
   align-items: center;
 `;
 
-export const ModalWrapper = styled.div`
+export const DecModalWrapper = styled.div`
   width: 40rem;
   height: 20rem;
   background: rgba(54, 69, 79, 0.95);
@@ -20,11 +20,10 @@ export const ModalWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 10;
   border-radius: 10px;
 `;
 
-export const ModalInput = styled.input`
+export const DecModalInput = styled.input`
   background-color: inherit;
   border: none;
   height: 2.5rem;
@@ -46,12 +45,12 @@ export const ModalInput = styled.input`
     background-color: inherit;
   }
 `;
-export const ButtonContainer = styled.div`
+export const DecButtonContainer = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const ModalButton = styled.a`
+export const DecModalButton = styled.a`
   color: ${(props) => (props.disabled ? "grey" : "#bcd4e6")};
   margin-top: 3rem;
   padding: 1rem 2rem;
@@ -100,7 +99,7 @@ export const ModalDecButton = styled.button`
   }
 `;
 
-export const CloseModalButton = styled(MdClose)`
+export const DecCloseModalButton = styled(MdClose)`
   cursor: pointer;
   position: absolute;
   top: 20px;

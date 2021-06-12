@@ -32,7 +32,7 @@ export const ModalWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   position: relative;
-  z-index: 10;
+  z-index: 1000;
   border-radius: 10px;
 `;
 

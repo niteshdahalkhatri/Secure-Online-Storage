@@ -233,7 +233,7 @@ function AddFileButton({ currentFolder }) {
               {encrypt ? (
                 <animated.div style={keyAnimation}>
                   <s.EncryptKey
-                    type="text"
+                    type="password"
                     placeholder={error ? error : "Your key here"}
                     error={error}
                     required

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 //Auth Provider
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivateRoute from "./components/authentication/PrivateRoute";
-import PublicRoute from "./components/authentication/PublicRoute";
 
 //components
 import App from "./App";
 import Login from "./components/authentication/Login";
 import Register from "./components/authentication/Register";
+import EmailSignIn from "./components/authentication/EmailSignIn";
 import ContactUs from "./components/pages/landing-page/ContactUs";
 import ForgotPassword from "./components/authentication/ForgotPassword";
 import Hero from "./components/pages/landing-page/Hero";
@@ -29,15 +29,18 @@ const Routes = () => {
       ) : (
         <AuthProvider>
           <Switch>
-            <PublicRoute exact path="/" component={Hero} />
-            <PublicRoute path="/login">
+            <Route exact path="/" component={Hero} />
+            <Route path="/login">
               <Login />
-            </PublicRoute>
-            <PublicRoute path="/register">
+            </Route>
+            <Route path="/register">
               <Register />
-            </PublicRoute>
-            <PublicRoute path="/contact-us" component={ContactUs} />
-            <PublicRoute path="/forgot-password" component={ForgotPassword} />
+            </Route>
+            <Route path="/email-sign-in">
+              <EmailSignIn />
+            </Route>
+            <Route path="/contact-us" component={ContactUs} />
+            <Route path="/forgot-password" component={ForgotPassword} />
             {/*private Route*/}
             <PrivateRoute path="/dashboard" component={App} />
             {/* <Route path="/dashboard" component={App} /> */}

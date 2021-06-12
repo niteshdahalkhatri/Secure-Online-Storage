@@ -9,12 +9,14 @@ import ShareModal from "../modal/ShareModal";
 import UnShareModal from "../modal/UnShareModal";
 import { useAuth } from "../../contexts/AuthContext";
 import { database } from "../../firebase";
+import AskKey from "../modal/AskKey";
 
 function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
   const modalRef = useRef();
   const [showModal, setShowModal] = useState(false);
   const [showShareModal, setShareModal] = useState(false);
   const [showUnShareModal, setUnShareModal] = useState(false);
+  const [showAskKey, setShowAskKey] = useState(false);
   const { currentUser } = useAuth();
 
   const animation = useSpring({
@@ -41,7 +43,7 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
     setShareModal((prev) => !prev);
   }
 
-  //works needs to be done shared by me
+  //works complete
   function handleUnshare() {
     setOpenFileDropdown((prev) => !prev);
     setUnShareModal((prev) => !prev);
@@ -53,11 +55,32 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
     });
     setOpenFileDropdown((prev) => !prev);
   }
+  function handleAskDelete() {
+    setOpenFileDropdown((prev) => !prev);
+    setShowAskKey(true);
+  }
 
   //share with me Remove
   function handleRemove() {
+    const emailsShared = file.sharedEmails.filter(
+      (email) => email !== currentUser.email
+    );
+
+    const fileSharedBy = emailsShared.length === 0 ? "" : file.sharedBy;
+    const fileSharedTo = file.sharedTo.filter(
+      (fileSharedTo) => fileSharedTo.uid !== currentUser.uid
+    );
+    database.files.doc(file.id).update({
+      sharedBy: fileSharedBy,
+      sharedTo: fileSharedTo,
+      sharedEmails: emailsShared,
+    });
+    // const newEmailsShared = emailsShared
+
+    // const newFileSharedTo = fileSharedTo
+    // console.log(newEmailsShared);
+    // console.log(newFileSharedTo);
     setOpenFileDropdown((prev) => !prev);
-    setShareModal((prev) => !prev);
   }
   return (
     <>
@@ -99,10 +122,17 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
 
               {file.ownedBy === currentUser.uid && <s.HR />}
               {file.ownedBy === currentUser.uid ? (
-                <s.FileModalContent onClick={handleDelete}>
-                  <AiFillDelete style={{ marginRight: "0.3rem" }} />
-                  <p>Delete</p>
-                </s.FileModalContent>
+                !file.encrypted ? (
+                  <s.FileModalContent onClick={handleDelete}>
+                    <AiFillDelete style={{ marginRight: "0.3rem" }} />
+                    <p>Delete</p>
+                  </s.FileModalContent>
+                ) : (
+                  <s.FileModalContent onClick={handleAskDelete}>
+                    <AiFillDelete style={{ marginRight: "0.3rem" }} />
+                    <p>Delete</p>
+                  </s.FileModalContent>
+                )
               ) : (
                 <s.FileModalContent onClick={handleRemove}>
                   <AiFillDelete style={{ marginRight: "0.3rem" }} />
@@ -128,6 +158,12 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
         showUnShareModal={showUnShareModal}
         setUnShareModal={setUnShareModal}
         file={file}
+      />
+      <AskKey
+        showAskKey={showAskKey}
+        setShowAskKey={setShowAskKey}
+        handleAskDelete={handleDelete}
+        userKey={file.key}
       />
     </>
   );

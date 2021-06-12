@@ -54,7 +54,7 @@ function UpdateProfile() {
 
         {error && <s.ErrorDisplay>{error}</s.ErrorDisplay>}
         <s.ModalContent>
-          <s.ModalForm onSubmit={handleSubmit}>
+          <s.ModalForm onSubmit={handleSubmit} autoComplete="off">
             <s.ModalLabel htmlFor="email">Email Address</s.ModalLabel>
             <s.ModalInput
               ref={emailRef}

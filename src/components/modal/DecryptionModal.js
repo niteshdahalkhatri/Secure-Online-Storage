@@ -49,10 +49,10 @@ function DecryptionModal({ showModal, setShowModal, userKey, file }) {
   return (
     <>
       {showModal ? (
-        <s.Background onClick={closeDecModal} ref={DecmodalRef}>
+        <s.DecBackground onClick={closeDecModal} ref={DecmodalRef}>
           <animated.div style={Decanimation}>
-            <s.ModalWrapper showModal={showModal}>
-              <s.ModalInput
+            <s.DecModalWrapper showModal={showModal}>
+              <s.DecModalInput
                 type="text"
                 autoFocus
                 placeholder="Your Key Here"
@@ -61,26 +61,26 @@ function DecryptionModal({ showModal, setShowModal, userKey, file }) {
                 value={errMsg ? errMsg : key}
                 onChange={(e) => setKey(e.target.value)}
               />
-              <s.ButtonContainer>
+              <s.DecButtonContainer>
                 <s.ModalDecButton onClick={handleDecrypt} disabled={disabler}>
                   Decrypt
                 </s.ModalDecButton>
-                <s.ModalButton
+                <s.DecModalButton
                   disabled={!disabler}
                   href={url}
                   download={file.name}
                 >
                   Download
-                </s.ModalButton>
-              </s.ButtonContainer>
+                </s.DecModalButton>
+              </s.DecButtonContainer>
 
-              <s.CloseModalButton
+              <s.DecCloseModalButton
                 aria-label="Close modal"
                 onClick={() => setShowModal((prev) => !prev)}
               />
-            </s.ModalWrapper>
+            </s.DecModalWrapper>
           </animated.div>
-        </s.Background>
+        </s.DecBackground>
       ) : null}
     </>
   );

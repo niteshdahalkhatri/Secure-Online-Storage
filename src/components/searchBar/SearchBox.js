@@ -9,7 +9,11 @@ const SearchBox = () => {
         <s.SearchIcon>
           <BsSearch color="#9966cc" />
         </s.SearchIcon>
-        <s.Search type="text" placeholder="Search for files..." />
+        <s.Search
+          type="text"
+          placeholder="Search for files..."
+          id="searchTerm"
+        />
       </s.SearchContainer>
     </>
   );

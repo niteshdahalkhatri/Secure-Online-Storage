@@ -19,6 +19,7 @@ export const AddFileIcon = styled(AiFillFileAdd)`
 export const UploadIcon = styled(MdCloudUpload)`
   font-size: 15rem;
   margin-top: -8rem;
+  color: #6a93af;
 `;
 
 export const Background = styled.div`
@@ -30,18 +31,21 @@ export const Background = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 1000;
 `;
 
 export const ModalWrapper = styled.div`
   width: 60rem;
   height: 40rem;
   background: rgba(54, 69, 79, 0.95);
+  /* background: rgba(106, 147, 175, 0.95); */
   color: #000;
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 1000;
   border-radius: 10px;
 `;
 
@@ -55,7 +59,7 @@ export const CloseModalButton = styled(AiOutlineClose)`
   padding: 0;
   z-index: 10;
   transition: 0.2s ease all;
-  color: white;
+  color: #6a93af;
   &:hover {
     transform: translateY(-0.3rem);
   }
@@ -132,10 +136,12 @@ export const EncryptKey = styled.input`
   width: 30rem;
   transition: 0.2s ease-in all;
   color: ${(props) => (props.error ? "red" : "#bcd4e6")};
+  letter-spacing: inherit;
 
   &::placeholder {
-    font-size: 1.6rem;
-    color: ${(props) => (props.error ? "red" : "#bcd4e6")};
+    font-size: 1.4rem;
+    color: ${(props) => (props.error ? "red" : "grey")};
+    letter-spacing: 0.2rem;
     /* error? 'content:attr(placce)' */
   }
 `;
@@ -163,6 +169,7 @@ export const EncryptButton = styled.button`
   transition: 0.2s ease all;
   ${(props) => props.disabled && "pointer-events:none;"}
   ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor:pointer;")}
+  letter-spacing: 0.2rem;
 
   &:hover {
     transform: translateY(-0.3rem);
@@ -182,7 +189,7 @@ export const UploadButton = styled.button`
   transition: 0.2s ease all;
   ${(props) => props.disabled && "pointer-events:none;"}
   ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor:pointer;")}
-
+  letter-spacing: 0.2rem;
   &:hover {
     transform: translateY(-0.3rem);
     box-shadow: 0rem 0.2rem 1rem rgba(0, 0, 0, 0.3);

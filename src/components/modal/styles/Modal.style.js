@@ -9,7 +9,7 @@ export const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 10000;
 `;
 
 export const ModalWrapper = styled.div`
@@ -21,7 +21,6 @@ export const ModalWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   position: relative;
-  z-index: 10;
   border-radius: 10px;
 `;
 

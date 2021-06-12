@@ -30,7 +30,7 @@ export const FolderContainer = styled.div`
 export const FileContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 2rem 2rem 0 2rem;
+  margin: 2rem 15rem 0 2rem;
 `;
 
 export const Folders = styled.div`
@@ -40,7 +40,7 @@ export const Folders = styled.div`
 
 export const Files = styled.div`
   max-width: 25rem;
-  padding: 1rem;
+  padding: 1rem 2rem 1rem 1rem;
 `;
 
 export const BinContainer = styled.div`
@@ -62,11 +62,13 @@ export const BinTextContainer = styled.div`
 export const TrashIcon = styled(BsFillTrash2Fill)`
   font-size: 2.5rem;
   margin-right: 0.6rem;
+  color: #6a93af;
 `;
 
 export const ShareIcon = styled(AiOutlineShareAlt)`
   font-size: 2.5rem;
   margin-right: 0.6rem;
+  color: #6a93af;
 `;
 
 const sameButtonCss = {
