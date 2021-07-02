@@ -5,6 +5,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { useAuth } from "../../contexts/AuthContext";
 import { database, storage } from "../../firebase";
+import { useNotification } from "../../contexts/NotificationProvider";
 
 function DeletedFileDropDown({
   openDeleteFile,
@@ -13,6 +14,7 @@ function DeletedFileDropDown({
 }) {
   const DeleteModalRef = useRef();
   const { currentUser } = useAuth();
+  const { setMessage, setShowNotification } = useNotification();
 
   const animation = useSpring({
     config: {
@@ -32,7 +34,8 @@ function DeletedFileDropDown({
     database.files.doc(file.id).update({
       moveToBin: false,
     });
-
+    setMessage(`${file.name} removed From Bin`);
+    setShowNotification(true);
     setOpenDeleteFileDropdown((prev) => !prev);
   }
 
@@ -40,12 +43,12 @@ function DeletedFileDropDown({
     const DeleteTask = storage
       .ref(`files/${currentUser.uid}${file.path}`)
       .delete();
-    DeleteTask.then((c) => {
-      console.log(c);
-    }).catch((e) => {
+    DeleteTask.then((c) => {}).catch((e) => {
       console.log(e);
     });
     database.files.doc(file.id).delete();
+    setMessage(`${file.name} deleted`);
+    setShowNotification(true);
     setOpenDeleteFileDropdown((prev) => !prev);
   }
   return (
@@ -61,7 +64,7 @@ function DeletedFileDropDown({
               <s.HR />
               <s.FileModalContent onClick={handleRemove}>
                 <IoIosRemoveCircle style={{ marginRight: "0.3rem" }} />
-                <p>Remove</p>
+                <p>Restore</p>
               </s.FileModalContent>
               <s.HR />
             </s.FileModalWrapper>

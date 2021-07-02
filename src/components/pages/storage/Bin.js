@@ -7,6 +7,7 @@ import styled from "@emotion/styled";
 import { database, storage } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 import QuestionModal from "../../modal/QuestionModal";
+import { useNotification } from "../../../contexts/NotificationProvider";
 // import DeletedFile from "../../Dropdown/DeletedFileDropDown";
 
 const ShareByMeContainer = styled.section`
@@ -18,6 +19,7 @@ function Bin() {
   const { currentUser } = useAuth();
   const { deletedFiles } = useFolder();
   const [showQuestion, setShowQuestion] = useState(false);
+  const { setMessage, setShowNotification } = useNotification();
   const Question =
     "Are you Sure? You will not be able to retrieve any deleted files?";
 
@@ -36,6 +38,8 @@ function Bin() {
     toBedeleteFile.forEach((id) => {
       database.files.doc(id).delete();
     });
+    setMessage("All Files Deleted");
+    setShowNotification(true);
   }
   return (
     <>

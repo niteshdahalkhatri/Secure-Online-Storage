@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { MdClose } from "react-icons/md";
 
 export const Nav = styled.nav`
   height: 6rem;
@@ -28,7 +29,7 @@ export const Logo = styled(Link)`
 export const MenuBars = styled(FaBars)`
   display: none;
   @media screen and (max-width: 798px) {
-    display: block;
+    display: ${(props) => (props.showMenu ? "none" : "block")};
     color: white;
     font-size: 2rem;
     cursor: pointer;
@@ -37,6 +38,45 @@ export const MenuBars = styled(FaBars)`
   }
 `;
 
+export const mobileMenu = styled.div`
+  display: none;
+  @media screen and (max-width: 798px) {
+    display: ${(props) => (props.showMenu ? "block" : "none")};
+    background: linear-gradient(
+      315deg,
+      rgba(0, 123, 167, 0.9) 0%,
+      rgba(54, 69, 79, 0.9) 70%
+    );
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 1000;
+  }
+`;
+
+export const mobileMenuContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 50vh;
+  margin-top: 20rem;
+`;
+export const CloseMenuButton = styled(MdClose)`
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  z-index: 10;
+  transition: 0.2s ease all;
+  color: white;
+  &:hover {
+    transform: translateY(-0.3rem);
+  }
+`;
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
@@ -52,7 +92,6 @@ export const NavMenuLinks = styled(Link)`
   font-size: 1.8rem;
   text-decoration: none;
   cursor: pointer;
-  height: 100%;
   padding: 0 1.5rem;
 `;
 

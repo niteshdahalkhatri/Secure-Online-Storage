@@ -10,6 +10,7 @@ import UnShareModal from "../modal/UnShareModal";
 import { useAuth } from "../../contexts/AuthContext";
 import { database } from "../../firebase";
 import AskKey from "../modal/AskKey";
+import { useNotification } from "../../contexts/NotificationProvider";
 
 function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
   const modalRef = useRef();
@@ -18,6 +19,7 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
   const [showUnShareModal, setUnShareModal] = useState(false);
   const [showAskKey, setShowAskKey] = useState(false);
   const { currentUser } = useAuth();
+  const { setMessage, setShowNotification } = useNotification();
 
   const animation = useSpring({
     config: {
@@ -54,6 +56,8 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
       moveToBin: true,
     });
     setOpenFileDropdown((prev) => !prev);
+    setMessage(`${file.name} Moved to bin`);
+    setShowNotification(true);
   }
   function handleAskDelete() {
     setOpenFileDropdown((prev) => !prev);
@@ -80,6 +84,8 @@ function FileDropDown({ openFileDropdown, setOpenFileDropdown, file }) {
     // const newFileSharedTo = fileSharedTo
     // console.log(newEmailsShared);
     // console.log(newFileSharedTo);
+    setMessage(`${file.name} removed from shared with me `);
+    setShowNotification(true);
     setOpenFileDropdown((prev) => !prev);
   }
   return (

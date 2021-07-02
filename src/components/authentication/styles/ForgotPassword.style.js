@@ -33,18 +33,19 @@ export const ModalContent = styled.div`
 `;
 
 export const ModalInput = styled.input`
-  background-color: rgba(54, 69, 79);
+  background: inherit;
   border: none;
   height: 2.5rem;
   padding: 2rem 2rem;
   width: 100%;
   outline: none;
   font-size: 1.8rem;
-  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid white;
   color: whitesmoke;
 
   &:focus {
-    background-color: rgba(54, 69, 79);
+    background: inherit;
   }
 `;
 

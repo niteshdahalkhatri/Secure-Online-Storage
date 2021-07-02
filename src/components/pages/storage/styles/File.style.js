@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaFileAlt } from "react-icons/fa";
-import { AiOutlineFileProtect } from "react-icons/ai";
+import { FaFileAlt, FaFileWord, FaFilePdf } from "react-icons/fa";
+import {
+  AiOutlineFileProtect,
+  AiFillFileImage,
+  AiFillFileExcel,
+} from "react-icons/ai";
 
 export const FileCardContainer = styled.section`
   display: flex;
@@ -21,16 +25,30 @@ export const IconContainer = styled.div`
   align-self: center;
 `;
 
+const sameIconCss = {
+  fontSize: "4rem",
+  marginTop: "3rem",
+  color: "rgb(115, 115, 115)",
+};
+
 export const FileIcon = styled(FaFileAlt)`
-  font-size: 4rem;
-  margin-top: 3rem;
-  color: rgb(115, 115, 115);
+  ${sameIconCss}
+`;
+export const WordIcon = styled(FaFileWord)`
+  ${sameIconCss}
+`;
+export const ImageIcon = styled(AiFillFileImage)`
+  ${sameIconCss}
+`;
+export const PdfIcon = styled(FaFilePdf)`
+  ${sameIconCss}
+`;
+export const ExcelIcon = styled(AiFillFileExcel)`
+  ${sameIconCss}
 `;
 
 export const FileIconProtected = styled(AiOutlineFileProtect)`
-  font-size: 4rem;
-  margin-top: 3rem;
-  color: rgb(115, 115, 115);
+  ${sameIconCss}
 `;
 
 export const CardBodyContaier = styled.div`

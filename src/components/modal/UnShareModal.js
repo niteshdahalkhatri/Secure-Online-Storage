@@ -4,6 +4,7 @@ import { useSpring, animated } from "react-spring";
 import { useFolder } from "../../hooks/useFolder";
 import { database } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNotification } from "../../contexts/NotificationProvider";
 
 function UnShareModal({ showUnShareModal, setUnShareModal, file }) {
   const UnSharemodalRef = useRef();
@@ -11,6 +12,7 @@ function UnShareModal({ showUnShareModal, setUnShareModal, file }) {
   const [errMsg, setErrMsg] = useState("");
   const { users } = useFolder();
   const { currentUser } = useAuth();
+  const { setMessage, setShowNotification } = useNotification();
 
   const UnShareanimation = useSpring({
     config: {
@@ -76,7 +78,8 @@ function UnShareModal({ showUnShareModal, setUnShareModal, file }) {
         sharedEmails: newEmails,
       });
     }
-
+    setMessage(`${file.name} removed for user ${email}`);
+    setShowNotification(true);
     setEmail("");
     setUnShareModal((prev) => !prev);
   }

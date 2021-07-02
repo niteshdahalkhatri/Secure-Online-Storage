@@ -6,15 +6,16 @@
 
 html{
     
+    scroll-behavior: smooth;
     font-size: 62.5%;
     @media(max-width: 1410px){
-font-size: 53%;
+    font-size: 53%;
     }
     @media(max-width: 1160px){
         font-size: 49%;
             }
 
-            @media(max-width: 1050px){
+    @media(max-width: 1050px){
                 font-size: 46%;
                     }
             

@@ -16,7 +16,16 @@ function UpdateProfile() {
     e.preventDefault();
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      setTimeout(() => {
+        setError("");
+      }, 3000);
       return setError("Passwords do not match");
+    }
+    if (passwordRef.current.value.length <= 8) {
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+      return setError("Minimum password length is 8");
     }
 
     const promises = [];
@@ -63,6 +72,7 @@ function UpdateProfile() {
               name="email"
               id="email"
               defaultValue={currentUser.email}
+              readOnly
             />
 
             <s.ModalLabel htmlFor="password">Password</s.ModalLabel>

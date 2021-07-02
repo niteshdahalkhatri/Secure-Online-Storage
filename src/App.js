@@ -20,9 +20,12 @@ import SearchPage from "./components/pages/storage/SearchResults";
 import SharedByMe from "./components/pages/storage/SharedByMe";
 import Bin from "./components/pages/storage/Bin";
 import Decrypt from "./components/pages/storage/Decrypt";
+import Notification from "./components/modal/Notification";
+import { useNotification } from "./contexts/NotificationProvider";
 
 function App() {
   const { path } = useRouteMatch();
+  const { message, showNotification, setShowNotification } = useNotification();
   return (
     <s.App>
       <SideBar />
@@ -48,8 +51,16 @@ function App() {
         <PrivateRoute path={`${path}/bin`} component={Bin} />
 
         {/**search poage*/}
-        <PrivateRoute path={`${path}/search-result`} component={SearchPage} />
+        <PrivateRoute
+          path={`${path}/search-result/:searchTerm`}
+          component={SearchPage}
+        />
         <Footer />
+        <Notification
+          message={message}
+          showNotification={showNotification}
+          setShowNotification={setShowNotification}
+        />
       </MainView>
     </s.App>
   );

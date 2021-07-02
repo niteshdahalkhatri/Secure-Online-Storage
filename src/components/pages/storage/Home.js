@@ -27,6 +27,11 @@ function SideBar() {
         <AddFileButton currentFolder={folder} />
         <AddFolderButton currentFolder={folder} />
       </s.HomeMain>
+      {childFolders.length === 0 && (
+        <p style={{ fontSize: "1.4rem", margin: "1rem 3rem" }}>
+          No Folders Yet! Create One
+        </p>
+      )}
       {childFolders.length > 0 && (
         <s.FolderContainer>
           {childFolders.map((childFolder) => (
@@ -36,7 +41,6 @@ function SideBar() {
           ))}
         </s.FolderContainer>
       )}
-
       {childFolders.length > 0 && childFiles.length > 0 && <s.HR />}
       {childFiles.length > 0 && (
         <s.FileContainer>

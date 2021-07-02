@@ -24,16 +24,16 @@ export const RegisterModalWrapper = styled.div`
 `;
 
 export const RegisterModalButton = styled.button`
-  color: rgb(231, 230, 221);
+  color: white;
   margin-top: 3rem;
   padding: 1rem 3rem;
-  background-color: #238636;
-  border: none;
+  background: inherit;
+  border: 1px solid white;
   font-size: 2rem;
   height: 5rem;
   cursor: pointer;
-  transition: 0.1s ease all;
-  border-radius: 5px;
+  transition: 0.2s ease all;
+
   letter-spacing: inherit;
 
   &:hover {

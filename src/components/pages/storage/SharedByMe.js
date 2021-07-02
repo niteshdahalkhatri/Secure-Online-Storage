@@ -5,6 +5,7 @@ import * as s from "./styles/Home.style";
 import styled from "@emotion/styled";
 import { database } from "../../../firebase";
 import QuestionModal from "../../modal/QuestionModal";
+import { useNotification } from "../../../contexts/NotificationProvider";
 
 const ShareByMeContainer = styled.section`
   overflow-y: scroll;
@@ -16,6 +17,7 @@ function SharedByMe() {
   const [showQuestion, setShowQuestion] = useState(false);
   const Question = "Are you Sure? You Want to remove all files shared by you?";
   const fileId = sharedByFiles.map((sharedByFile) => sharedByFile.id);
+  const { setMessage, setShowNotification } = useNotification();
 
   function handleMassRemove() {
     fileId.forEach((id) => {
@@ -25,6 +27,8 @@ function SharedByMe() {
         sharedEmails: [],
       });
     });
+    setMessage("All Shared Files Removed");
+    setShowNotification(true);
   }
 
   return (
@@ -45,6 +49,11 @@ function SharedByMe() {
         </s.BinContainer>
         <s.HR />
         <s.FileContainer>
+          {sharedByFiles.length === 0 && (
+            <p style={{ fontSize: "1.4rem", marginLeft: "2rem" }}>
+              You have not shared any files!
+            </p>
+          )}
           {sharedByFiles.map(
             (childFile) =>
               !childFile.moveToBin && (

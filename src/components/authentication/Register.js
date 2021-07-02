@@ -45,8 +45,8 @@ function Register() {
         email: emailRef.current.value,
         verified: false,
       });
-      window.localStorage.setItem("emailForSignIn", emailRef.current.value);
-      history.push("/email-sign-in");
+      // window.localStorage.setItem("emailForSignIn", emailRef.current.value);
+      history.push("/login");
     } catch {
       TimeOut("Failed to create an account | Use strong password");
     }

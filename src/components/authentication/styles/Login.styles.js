@@ -14,7 +14,7 @@ export const LoginBackground = styled.section`
 `;
 
 export const Logo = styled(Link)`
-  color: rgb(231, 230, 221);
+  color: white;
   font-size: 8rem;
   text-decoration: none;
   cursor: pointer;
@@ -23,7 +23,7 @@ export const Logo = styled(Link)`
 `;
 
 export const LogoText = styled.p`
-  color: rgb(231, 230, 221);
+  color: white;
   font-size: 3rem;
   text-decoration: none;
   cursor: pointer;
@@ -37,7 +37,7 @@ export const ModalWrapper = styled.div`
   width: 45rem;
   height: 35rem;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-  background: rgba(27, 27, 34, 0.6);
+  background: rgba(27, 27, 34, 0.4);
   color: #000;
   display: grid;
   grid-template-columns: 1fr;
@@ -63,7 +63,7 @@ export const ModalForm = styled.form`
 `;
 
 export const ModalInput = styled.input`
-  background-color: rgba(54, 69, 79);
+  background: inherit;
   border: none;
   height: 2.5rem;
   padding: 2rem 2rem;
@@ -71,7 +71,9 @@ export const ModalInput = styled.input`
   margin-top: 2rem;
   outline: none;
   font-size: 1.8rem;
-  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid white;
+
   color: whitesmoke;
   letter-spacing: inherit;
 
@@ -83,7 +85,7 @@ export const ModalInput = styled.input`
   }
 
   &:focus {
-    background-color: rgba(54, 69, 79);
+    background: inherit;
   }
 `;
 
@@ -99,13 +101,12 @@ export const ModalButton = styled.button`
   color: rgb(231, 230, 221);
   margin-top: 5rem;
   padding: 1rem 3rem;
-  background-color: #238636;
-  border: none;
+  background: inherit;
+  border: 1px solid white;
   font-size: 2rem;
   height: 5rem;
   cursor: pointer;
-  transition: 0.1s ease all;
-  border-radius: 5px;
+  transition: 0.2s ease-in all;
   letter-spacing: inherit;
 
   &:hover {

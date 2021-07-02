@@ -21,6 +21,11 @@ function SharedWithMe() {
       </s.BinContainer>
       <s.HR />
       <s.FileContainer>
+        {sharedFiles.length === 0 && (
+          <p style={{ fontSize: "1.4rem", marginLeft: "2rem" }}>
+            No shared files
+          </p>
+        )}
         {sharedFiles.map(
           (childFile) =>
             !childFile.moveToBin && (

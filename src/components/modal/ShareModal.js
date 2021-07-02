@@ -4,7 +4,7 @@ import { useSpring, animated } from "react-spring";
 import { useFolder } from "../../hooks/useFolder";
 import { database } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
-// import { sendMail } from "../functions/sendMails";
+import { useNotification } from "../../contexts/NotificationProvider";
 
 function ShareModal({ showShareModal, setShareModal, file }) {
   const SharemodalRef = useRef();
@@ -12,7 +12,7 @@ function ShareModal({ showShareModal, setShareModal, file }) {
   const [errMsg, setErrMsg] = useState("");
   const { users } = useFolder();
   const { currentUser } = useAuth();
-
+  const { setMessage, setShowNotification } = useNotification();
   const Shareanimation = useSpring({
     config: {
       duration: 200,
@@ -61,20 +61,13 @@ function ShareModal({ showShareModal, setShareModal, file }) {
     sharedToEmails.push(user.email);
     prevValue.push(user);
 
-    // sendMail(
-    //   email,
-    //   `${file.name} was shared to you.`,
-    //   `${currentUser.email} shared the file (${file.name}) to you,
-    //     You can contact this user for the key of this file. ${
-    //       file.encrypted && "Keep in mind that the file is encrypted"
-    //     }`,
-    //   '<a href="http://localhost:3000/dashboard/shared-with-me">http://localhost:3000/dashboard/shared-with-me</a>'
-    // );
     database.files.doc(file.id).update({
       sharedTo: prevValue,
       sharedBy: currentUser.uid,
       sharedEmails: sharedToEmails,
     });
+    setMessage(`${file.name} shared to ${email}`);
+    setShowNotification(true);
     setEmail("");
     setShareModal((prev) => !prev);
   }

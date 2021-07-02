@@ -57,7 +57,7 @@ function Upload() {
 
           <s.EncryptLabel htmlFor="encrypt">Encrypt</s.EncryptLabel>
           <s.EncryptKey
-            type="password"
+            type={errMsg ? "text" : "password"}
             autoFocus
             placeholder="your key here"
             id="encrypt"
